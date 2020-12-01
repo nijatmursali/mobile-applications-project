@@ -4,14 +4,13 @@ const path = require("path");
 const app = express();
 
 app.get("/", (req, res) => {
-  let rawdata = fs.readFileSync(path.resolve(__dirname, "questions.json"));
-  let student = JSON.parse(rawdata);
-  console.log(student);
-  res.send(student);
+  res.send("Hello World!");
 });
 
 app.get("/api/questions", (req, res) => {
-  res.send("There will be questions!");
+  let rdata = fs.readFileSync(path.resolve(__dirname, "questions.json"));
+  let questions = JSON.parse(rdata);
+  res.send(questions);
 });
 
 const port = process.env.PORT || 5000;
