@@ -8,6 +8,9 @@
 *.dex
 
 # Java class files
+#api things
+node_modules
+
 *.class
 
 # Generated files
