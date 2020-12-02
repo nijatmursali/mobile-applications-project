@@ -1,10 +1,24 @@
 [
     {
-        "question": "What is the meaning of Activity in Android Studio?",
-        "choice1": "IDK",
-        "choice2": "IDK",
-        "choice3": "Activity",
-        "choice4": "IDK",
-        "answer": 3
+        "category": "Movies",
+        "difficulty": "easy",
+        "question": "What is the best movie came to life so far?",
+        "picture": "",
+        "choice1": "The Dark Knight",
+        "choice2": "Inception",
+        "choice3": "The Godfather",
+        "choice4": "All of the above.",
+        "answer": 4
+    },
+    {
+        "category": "Flags",
+        "difficulty": "hard",
+        "question": "What is the flag in the picture?",
+        "picture": "image_here",
+        "choice1": "The Dark Knight",
+        "choice2": "Inception",
+        "choice3": "The Godfather",
+        "choice4": "All of the above.",
+        "answer": 4
     }
 ]
