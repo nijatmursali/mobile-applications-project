@@ -10,7 +10,7 @@
 # Java class files
 #api things
 node_modules
-
+*.env
 *.class
 
 # Generated files
@@ -86,3 +86,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+api/.env

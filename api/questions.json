@@ -1,24 +1,59 @@
 [
     {
-        "category": "Movies",
-        "difficulty": "easy",
-        "question": "What is the best movie came to life so far?",
-        "picture": "",
-        "choice1": "The Dark Knight",
-        "choice2": "Inception",
-        "choice3": "The Godfather",
-        "choice4": "All of the above.",
-        "answer": 4
+      "_id": "5fc7a80709794309649710e7",
+      "description": "What country does this flag belong to?",
+      "category": "Flags",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/1200px-Flag_of_Italy.svg.png",
+      "choices": [
+        {
+          "isCorrect": false,
+          "_id": "5fc7a80709794309649710e8",
+          "text": "Argentina"
+        },
+        {
+          "isCorrect": false,
+          "_id": "5fc7a80709794309649710e9",
+          "text": "Germany"
+        },
+        {
+          "isCorrect": false,
+          "_id": "5fc7a80709794309649710ea",
+          "text": "Turkey"
+        },
+        {
+          "isCorrect": true,
+          "_id": "5fc7a80709794309649710eb",
+          "text": "Italy"
+        }
+      ],
+      "__v": 0
     },
     {
-        "category": "Flags",
-        "difficulty": "hard",
-        "question": "What is the flag in the picture?",
-        "picture": "image_here",
-        "choice1": "The Dark Knight",
-        "choice2": "Inception",
-        "choice3": "The Godfather",
-        "choice4": "All of the above.",
-        "answer": 4
+      "_id": "5fc7aebf01536724bc6ef496",
+      "description": "Which movie is the best of all time?",
+      "category": "Movies",
+      "choices": [
+        {
+          "isCorrect": false,
+          "_id": "5fc7aebf01536724bc6ef497",
+          "text": "Inception"
+        },
+        {
+          "isCorrect": false,
+          "_id": "5fc7aebf01536724bc6ef498",
+          "text": "The Dark Knight"
+        },
+        {
+          "isCorrect": false,
+          "_id": "5fc7aebf01536724bc6ef499",
+          "text": "The Green Mile"
+        },
+        {
+          "isCorrect": true,
+          "_id": "5fc7aebf01536724bc6ef49a",
+          "text": "The Godfather"
+        }
+      ],
+      "__v": 0
     }
-]
+  ]
