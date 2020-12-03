@@ -42,14 +42,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Movies"
+                        android:text="Countries"
                         android:textSize="24dp"
                         android:textColor="#fff">
                     </TextView>
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="We have listed several movies here."
+                        android:text="We have listed several countries here."
                         android:textSize="15dp"
                         android:textColor="#d6d6d6">
                     </TextView>
@@ -62,7 +62,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/movie"
+                        android:src="@drawable/ic_flag_of_argentina"
                         android:layout_alignParentRight="true"
 
                         >
@@ -85,10 +85,10 @@
                     android:orientation="vertical">
 
                     <Button
-
+                        android:id="@+id/btn_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Movies"
+                        android:text="Countries"
                         android:textSize="15dp"
                         android:textColor="#fff">
                     </Button>
