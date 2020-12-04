@@ -121,7 +121,7 @@
             android:layout_margin="5dp"
             android:background="@color/design_default_color_primary"
             android:textColor="#fff"
-            android:text="Submit"
+            android:text="GO TO NEXT QUESTION"
             android:textSize="18sp"
             >
 
