@@ -51,11 +51,30 @@ router.get("/api/questions/:id", async (req, res) => {
 // get one quiz question by category
 router.get("/api/questions/category/:category", async (req, res) => {
   const category = req.params.category;
+  console.log(req.params);
+
   try {
     const question = await Question.find({
       category,
     });
-    console.log(question);
+    if (!question) {
+      return res.status(404).json({});
+    } else {
+      return res.status(200).json(question);
+    }
+  } catch (error) {
+    return res.status(500).json({ error: error });
+  }
+});
+router.get("/api/questions/category/:category/:id", async (req, res) => {
+  console.log(req.params);
+  const category = req.params.category;
+  const _id = req.params.id;
+  try {
+    const question = await Question.findOne({
+      category,
+      _id,
+    });
     if (!question) {
       return res.status(404).json({});
     } else {
