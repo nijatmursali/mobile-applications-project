@@ -1,5 +1,6 @@
 package com.sapienza.quizapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -17,10 +18,13 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
     private var mQuestionList: ArrayList<ParseQuestions>? = null
     private var mSelectedOptionPosition: Int = 0
     private var correctAnswerCount = 0
+    private var mUsername: String?  = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+
+        mUsername = intent.getStringExtra(Constants.USER_NAME)
 
         mQuestionList = Constants.getQuestions()
         //setQuestion()
@@ -77,32 +81,25 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         val question = mQuestionList?.get(mCurrentPosition -1)
-        //mCurrentPosition ++
         when(v?.id){
             R.id.text_options1 -> {
-                //selectedOptionView(text_options1, 1)
-                Log.i("CLicked Option: ","1 & choice id:"+question!!.choices1.id+" with choice text: "+question!!.choices1.text+" is: "+question.choices1.isCorrect)
-                selectionOption(text_options1, question.choices1.isCorrect)
-                Log.i("mCurrentPosition: ", ""+mCurrentPosition)
+                selectionOption(text_options1, question!!.choices1.isCorrect)
                 disableAllButtons()
             }
 
             R.id.text_options2 -> {
-               // selectedOptionView(text_options2, 2)
                 Log.i("CLicked Option: ","2")
                 selectionOption(text_options2, question!!.choices2.isCorrect)
                 disableAllButtons()
             }
 
             R.id.text_options3 -> {
-               // selectedOptionView(text_options3, 3)
                 Log.i("CLicked Option: ","3")
                 selectionOption(text_options3, question!!.choices3.isCorrect)
                 disableAllButtons()
             }
 
             R.id.text_options4 -> {
-               // selectedOptionView(text_options4, 4)
                 Log.i("CLicked Option: ","4")
                 selectionOption(text_options4, question!!.choices4.isCorrect)
                 disableAllButtons()
@@ -116,8 +113,12 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
                         mCurrentPosition <= mQuestionList!!.size -> {
                             setQuestion()
                         } else -> {
-                        Toast.makeText(this, "You have successfully completed the Quiz, Your score is: "+correctAnswerCount, Toast.LENGTH_SHORT).show()
-                    }
+                        val intent = Intent(this, ResultActivity::class.java)
+                        intent.putExtra(Constants.USER_NAME, mUsername)
+                        intent.putExtra(Constants.CORRECT_ANSWERS, correctAnswerCount.toString())
+                        intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionList!!.size.toString())
+                        startActivity(intent)
+                        }
                     }
 
                     if (mCurrentPosition == mQuestionList!!.size){

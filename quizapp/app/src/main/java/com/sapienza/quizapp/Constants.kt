@@ -1,10 +1,13 @@
 package com.sapienza.quizapp
 
 object Constants{
+    const val USER_NAME: String = "username"
+    const val TOTAL_QUESTIONS: String = "total_questions"
+    var CORRECT_ANSWERS: String = "total_answers"
+
     fun getQuestions(): ArrayList<ParseQuestions>{
         var questionsList = ArrayList<ParseQuestions>()
 
-       // val integers =
         // 1
         val que1 = ParseQuestions(
                 1,
