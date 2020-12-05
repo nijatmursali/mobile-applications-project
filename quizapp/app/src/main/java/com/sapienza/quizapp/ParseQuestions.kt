@@ -1,7 +1,7 @@
 package com.sapienza.quizapp
 
-data class ParseQuestions (
-    val id: Int,
+data class ParseQuestions(
+    val id: String,
     val question: String,
     val category: String,
     val img: Int,

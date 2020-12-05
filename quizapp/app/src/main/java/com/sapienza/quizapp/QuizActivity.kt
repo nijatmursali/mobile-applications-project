@@ -7,26 +7,33 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz.*
+import org.json.JSONArray
+import java.io.IOException
+import java.io.InputStream
 
 class QuizActivity: AppCompatActivity(), View.OnClickListener{
+    var questionsList = ArrayList<ParseQuestions>()
 
     private var mCurrentPosition: Int = 1
     private var mQuestionList: ArrayList<ParseQuestions>? = null
     private var mSelectedOptionPosition: Int = 0
     private var correctAnswerCount = 0
     private var mUsername: String?  = null
+    var arr = arrayListOf<String>()
+    var choicesList = ArrayList<ParseChoices>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
+        readJSON()
         mUsername = intent.getStringExtra(Constants.USER_NAME)
+        Log.i("Choices: ", ""+questionsList)
 
-        mQuestionList = Constants.getQuestions()
+        mQuestionList = questionsList
         //setQuestion()
         text_options1.setOnClickListener(this)
         text_options2.setOnClickListener(this)
@@ -151,5 +158,56 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
         } else {
             tv.background = ContextCompat.getDrawable(this, R.drawable.wrong_option_border_bg)
         }
+    }
+
+    private fun readJSON() {
+        var json: String? = null
+        try {
+            val inputStream: InputStream = assets.open("dummy_questions.json")
+            json = inputStream.bufferedReader().use { it.readText() }
+
+            var jsonarr = JSONArray(json)
+            //Log.i("JSONARRAY: ", ""+jsonarr.getJSONObject(0).getString("description"))
+            var inc: Int = 0
+            var quesId: Int = 1
+            (0 until jsonarr.length()).forEach{ _ ->
+
+                choicesList.clear()
+                var choicesInc: Int = 0
+                val questionId: String = jsonarr.getJSONObject(inc).getString("_id")
+                val description: String = jsonarr.getJSONObject(inc).getString("description")
+                val category: String = jsonarr.getJSONObject(inc).getString("category")
+                val image: String = jsonarr.getJSONObject(inc).getString("image")
+                val choices: JSONArray = jsonarr.getJSONObject(inc).getJSONArray("choices")
+
+                (0 until choices.length()).forEach{ _ ->
+                    val isCorrect: Boolean = choices.getJSONObject(choicesInc).getBoolean("isCorrect")
+                    val choiceText: String = choices.getJSONObject(choicesInc).getString("text")
+                    choicesList.add(ParseChoices(isCorrect, choicesInc, choiceText))
+                    choicesInc++
+                }
+
+                val que = ParseQuestions(questionId,
+                    description,
+                    category,
+                    R.drawable.ic_flag_of_argentina,
+                    choicesList[0],
+                    choicesList[1],
+                    choicesList[2],
+                    choicesList[3]
+                    )
+                questionsList.add(que)
+                //Log.i("ParseQuestions: ",""+questionsList)
+                inc++
+                quesId++
+            }
+
+        }catch (i: IOException){
+            Log.i("Error: ", ""+i)
+        }
+    }
+
+    private fun getQuestions(): ArrayList<ParseQuestions>{
+        return ArrayList()
     }
 }
