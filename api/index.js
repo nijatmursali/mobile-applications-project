@@ -6,7 +6,9 @@ const cors = require("cors");
 //import routes
 const routes = require("./routers/router");
 
-require("dotenv").config();
+require("dotenv").config({
+  path: "./config/.env",
+});
 
 app.use(cors());
 app.use(express.json());
