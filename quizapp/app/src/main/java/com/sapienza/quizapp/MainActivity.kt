@@ -60,8 +60,9 @@ class MainActivity : AppCompatActivity() {
         quote.setTextColor(Color.WHITE)
         quote.setTypeface(Typeface.SANS_SERIF,Typeface.NORMAL)
         Log.i("Category: ", ""+categoryList[categoryCounter])
-        val name = TextView(this)
-        name.text = "- Thomas A. Edison"
+
+            val name = TextView(this)
+        name.text = "We have listed several "+categoryList[categoryCounter]
         name.textSize = 16f
         name.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC)
         name.setTextColor(Color.parseColor("#E0F2F1"))
