@@ -28,10 +28,10 @@ We created our own REST API with MEN(Mongo, Express, Node) stack
 
 These are the routes
 
-- Get all quiz questions `http://localhost:5000/api/questions`
-- Get quiz question by ID `http://localhost:5000/api/questions/<id>`
-- Get quiz question by category `http://localhost:5000/api/questions/category<category>`
-- Get one quiz question by category and ID `http://localhost:5000/api/questions/category/<category>/<id>`
-- Add new quiz question `http://localhost:5000/api/questions` and select POST request
-- Update the quiz question by ID `http://localhost:5000/api/questions/<id>`
-- Delete the quiz question by ID `http://localhost:5000/api/questions/<id>`
+- Get all quiz questions `http://161.35.55.28:5000/api/questions`
+- Get quiz question by ID `http://161.35.55.28:5000/api/questions/<id>`
+- Get quiz question by category `http://161.35.55.28:5000/api/questions/category<category>`
+- Get one quiz question by category and ID `http://161.35.55.28:5000/api/questions/category/<category>/<id>`
+- Add new quiz question `http://161.35.55.28:5000/api/questions` and select POST request
+- Update the quiz question by ID `http://161.35.55.28:5000/api/questions/<id>`
+- Delete the quiz question by ID `http://161.35.55.28:5000/api/questions/<id>`
