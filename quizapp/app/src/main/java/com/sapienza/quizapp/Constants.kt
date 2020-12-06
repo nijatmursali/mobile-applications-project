@@ -1,12 +1,10 @@
 package com.sapienza.quizapp
 
-import android.util.Log
-
 
 object Constants{
     const val USER_NAME: String = "username"
-    const val TOTAL_QUESTIONS: String = "total_questions"
-    var CORRECT_ANSWERS: String = "total_answers"
+    const val TOTAL_QUESTIONS: Int = 0
+    var CORRECT_ANSWERS: Int = 0
 
     fun getQuestions(): ArrayList<ParseQuestions>{
         var questionsList = ArrayList<ParseQuestions>()

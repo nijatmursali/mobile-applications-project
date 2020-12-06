@@ -10,6 +10,7 @@ class LoginActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        var CATEGORY_NAME = intent.getStringExtra("CATEGORY_NAME")
 
         start.setOnClickListener(){
             if(et_name.text.toString().isEmpty()){
@@ -17,6 +18,7 @@ class LoginActivity: AppCompatActivity() {
             }else {
                 val intent = Intent(this, QuizActivity::class.java)
                 intent.putExtra(Constants.USER_NAME, et_name.text.toString())
+                intent.putExtra("CATEGORY_NAME", CATEGORY_NAME)
                 startActivity(intent)
                 finish()
             }
