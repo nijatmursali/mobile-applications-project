@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<head>
+    <title>APIFE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Mobile Applications API</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add</h5>
+                    </div>
+                    <div class="card-body"><br>
+                        <form id="validated-form">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Description</h5>
+                                        </div>
+                                        <div class="card-body"><br>
+                                            <div class="form-group">
+                                                <textarea rows="7" name="apiDescription" type="text"
+                                                    class="form-control" id="apiDescription" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Information</h5>
+                                        </div>
+                                        <div class="card-body"><br>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="apiImage">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="apiCategory">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="apiChoices">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <a type="button" class="btn btn-light" href="index.html"><i
+                                class="fas fa-arrow-left"></i><span>Back</span></a>
+                        <button id="submit-add-api" type="button" class="btn btn-primary">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="js/api-model.js"></script>
+<script src="js/list.js"></script>
+</body>
+
+</html>
