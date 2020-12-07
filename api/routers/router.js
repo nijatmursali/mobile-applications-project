@@ -103,7 +103,7 @@ router.put("/api/questions/:id", async (req, res) => {
       return res.status(201).json(question);
     } else {
       question.description = description;
-      question.alternatives = alternatives;
+      question.choices = choices;
       await question.save();
       return res.status(200).json(question);
     }

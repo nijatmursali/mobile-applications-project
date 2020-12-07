@@ -32,7 +32,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 th:text="#{reports.details}"></h5>
+                    <h5>Details</h5>
                 </div>
                 <div class="card-block">
                     <div class="project-main">
@@ -65,11 +65,21 @@
                                         <div class="text-left">
                                             <div style="text-transform: uppercase;">
                                                 <h6 class="mt-4">Image</h6>
-                                                <img class="picture" src="" alt="">
+                                                <img class="picture" src="" alt="" style="width:50%">
                                                 <h6 class="mt-4">Category</h6>
                                                 <p id="apiCategory"></p>
                                                 <h6 class="mt-4">Choices</h6>
-                                                <p id="apiChoices"></p>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">isCorrect</th>
+                                                            <th scope="col">Text</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="addChoices">
+                                                    </tbody>
+                                                </table>
 
                                             </div>
                                         </div>
@@ -81,7 +91,6 @@
                             <div class="col-sm">
                                 <a type="button" class="btn btn-light m-t-10" href="index.html"><i
                                         class="fas fa-arrow-left"></i><span>Back</span></a>
-                                <a th:href="edit(_id=${param.id})}" class="btn btn-primary shadow-2 m-t-10">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -102,7 +111,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="js/api-model.js"></script>
-    <script src="js/list.js"></script>
+    <script src="js/_partials/details.js"></script>
 </body>
 
 </html>

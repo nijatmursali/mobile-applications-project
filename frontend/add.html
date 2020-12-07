@@ -35,45 +35,96 @@
                         <h5>Add</h5>
                     </div>
                     <div class="card-body"><br>
-                        <form id="validated-form">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Description</h5>
-                                        </div>
-                                        <div class="card-body"><br>
-                                            <div class="form-group">
-                                                <textarea rows="7" name="apiDescription" type="text"
-                                                    class="form-control" id="apiDescription" required></textarea>
-                                            </div>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Description</h5>
                                     </div>
-                                </div>
-
-                                <div class="col-md-12 col-lg-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Information</h5>
-                                        </div>
-                                        <div class="card-body"><br>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="apiImage">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="apiCategory">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="apiChoices">
-                                            </div>
+                                    <div class="card-body"><br>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea rows="7" name="apiDescription" type="text" class="form-control"
+                                                id="apiDescription" required></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+
+                            <div class="col-md-12 col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Information</h5>
+                                    </div>
+                                    <div class="card-body"><br>
+                                        <div class="form-group">
+                                            <label>Image Link</label>
+                                            <input type="text" class="form-control" id="apiImage">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <input type="text" class="form-control" id="apiCategory">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Choices</label>
+                                            <table class="table order-list">
+                                                <thead>
+                                                    <th>Correct</th>
+                                                    <th>Text</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" class="form-control isCorrect" />
+                                                        </td>
+                                                        <td><input type="text" class="form-control text" />
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="text" class="form-control isCorrect" />
+                                                        </td>
+                                                        <td><input type="text" class="form-control text" />
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="text" class="form-control isCorrect" />
+                                                        </td>
+                                                        <td><input type="text" class="form-control text" />
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="text" class="form-control isCorrect" />
+                                                        </td>
+                                                        <td><input type="text" class="form-control text" />
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5" style="text-align: right;">
+                                                            <button type="button" class="btn btn-primary" id="addquery"
+                                                                data-toggle="tooltip" data-html="true"
+                                                                style="display: none">
+                                                                <i class="fa fa-plus"></i>
+                                                                ADD
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <a type="button" class="btn btn-light" href="index.html"><i
                                 class="fas fa-arrow-left"></i><span>Back</span></a>
-                        <button id="submit-add-api" type="button" class="btn btn-primary">Save</button>
+                        <button id="submit-new-api" type="button" class="btn btn-primary">Save</button>
 
                     </div>
                 </div>
@@ -91,7 +142,7 @@
     crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script src="js/api-model.js"></script>
-<script src="js/list.js"></script>
+<script src="js/_partials/add.js"></script>
 </body>
 
 </html>

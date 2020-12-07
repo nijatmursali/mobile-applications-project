@@ -4,7 +4,10 @@ class Api {
       (this.description = ""),
       (this.category = ""),
       (this.image = ""),
-      (this.choices = {});
+      (this.choices = {
+        isCorrect: false,
+        text: "",
+      });
 
     if (json) {
       for (var attr in this) {
@@ -26,7 +29,7 @@ class Api {
         <i title=edit class="fa fa-edit"></i>
         </a>`;
 
-    actions += `<a class="user-list-action" href="" onclick="askDeleteConfirm('${this._id}');return false;">
+    actions += `<a class="user-list-action" href="" onclick="deleteAPIConfirmed('${this._id}');return false;">
         <i title=delete class="fa fa-trash"></i>
         </a>`;
 
