@@ -9,12 +9,19 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_quiz.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.json.JSONArray
 import java.io.IOException
-import java.io.InputStream
 
-class QuizActivity: AppCompatActivity(), View.OnClickListener{
+class QuizActivity: AppCompatActivity(), View.OnClickListener {
     var questionsList = ArrayList<ParseQuestions>()
 
     private var mCurrentPosition: Int = 1
@@ -22,19 +29,20 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
     private var mSelectedOptionPosition: Int = 0
     private var correctAnswerCount = 0
     private var mUsername: String?  = null
-    var arr = arrayListOf<String>()
+    var totalQuestions: Int = 0
+
     var choicesList = ArrayList<ParseChoices>()
+    lateinit var currentCategory: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-
+        currentCategory = intent.getStringExtra("CATEGORY_NAME").toString()
         readJSON()
         mUsername = intent.getStringExtra(Constants.USER_NAME)
-        Log.i("Choices: ", ""+questionsList)
 
         mQuestionList = questionsList
-        //setQuestion()
+        setQuestion()
         text_options1.setOnClickListener(this)
         text_options2.setOnClickListener(this)
         text_options3.setOnClickListener(this)
@@ -56,15 +64,22 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
 
         progress_bar.progress = mCurrentPosition
 
-        text_progress.text = "$mCurrentPosition" + "/" + progress_bar.max
+        text_progress.text = "$mCurrentPosition" + "/" + totalQuestions
 
-        quiz_question.text = question!!.question
-        quiz_image.setImageResource(question!!.img)
+        quiz_question.text = question.question
 
-        text_options1.text = question!!.choices1.text
-        text_options2.text = question!!.choices2.text
-        text_options3.text = question!!.choices3.text
-        text_options4.text = question!!.choices4.text
+        if (question.img.isEmpty()) {
+            quiz_image.setImageResource(R.drawable.placeholder);
+        } else{
+            Picasso.get().load(question.img).into(quiz_image)
+        }
+
+        Picasso.get().isLoggingEnabled = true
+        Log.i("Image Details", ""+ question.img)
+        text_options1.text = question.choices1.text
+        text_options2.text = question.choices2.text
+        text_options3.text = question.choices3.text
+        text_options4.text = question.choices4.text
 
     }
 
@@ -122,8 +137,8 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
                         } else -> {
                         val intent = Intent(this, ResultActivity::class.java)
                         intent.putExtra(Constants.USER_NAME, mUsername)
-                        intent.putExtra(Constants.CORRECT_ANSWERS, correctAnswerCount.toString())
-                        intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionList!!.size.toString())
+                        intent.putExtra("Constants.CORRECT_ANSWERS", correctAnswerCount)
+                        intent.putExtra("Constants.TOTAL_QUESTIONS", mQuestionList!!.size)
                         startActivity(intent)
                         }
                     }
@@ -162,52 +177,70 @@ class QuizActivity: AppCompatActivity(), View.OnClickListener{
 
     private fun readJSON() {
         var json: String? = null
-        try {
-            val inputStream: InputStream = assets.open("dummy_questions.json")
-            json = inputStream.bufferedReader().use { it.readText() }
 
-            var jsonarr = JSONArray(json)
-            //Log.i("JSONARRAY: ", ""+jsonarr.getJSONObject(0).getString("description"))
-            var inc: Int = 0
-            var quesId: Int = 1
-            (0 until jsonarr.length()).forEach{ _ ->
 
-                choicesList.clear()
-                var choicesInc: Int = 0
-                val questionId: String = jsonarr.getJSONObject(inc).getString("_id")
-                val description: String = jsonarr.getJSONObject(inc).getString("description")
-                val category: String = jsonarr.getJSONObject(inc).getString("category")
-                val image: String = jsonarr.getJSONObject(inc).getString("image")
-                val choices: JSONArray = jsonarr.getJSONObject(inc).getJSONArray("choices")
+        GlobalScope.launch { // launch a new coroutine in background and continue
+            var client = OkHttpClient()
 
-                (0 until choices.length()).forEach{ _ ->
-                    val isCorrect: Boolean = choices.getJSONObject(choicesInc).getBoolean("isCorrect")
-                    val choiceText: String = choices.getJSONObject(choicesInc).getString("text")
-                    choicesList.add(ParseChoices(isCorrect, choicesInc, choiceText))
-                    choicesInc++
+            try {
+                fun run(url: String?) {
+                    val localUrl: HttpUrl? = HttpUrl.parse(url)
+                    val request = Request.Builder()
+                        .url(localUrl)
+                        .build()
+                    client.newCall(request).execute().use { response -> json = response.body()?.string()  }
+                    Log.i("Response", ""+client)
                 }
+                run("http://161.35.55.28:5000/api/questions/")
 
-                val que = ParseQuestions(questionId,
-                    description,
-                    category,
-                    R.drawable.ic_flag_of_argentina,
-                    choicesList[0],
-                    choicesList[1],
-                    choicesList[2],
-                    choicesList[3]
+                //val inputStream: InputStream = assets.open("dummy_questions.json")
+                //json = inputStream.bufferedReader().use { it.readText() }
+
+                var jsonarr = JSONArray(json)
+                Log.i("Respanse", ""+jsonarr)
+                var inc: Int = 0
+
+                (0 until jsonarr.length()).forEach{ _ ->
+
+                    choicesList.clear()
+                    var choicesInc: Int = 0
+                    val questionId: String = jsonarr.getJSONObject(inc).getString("_id")
+                    val description: String = jsonarr.getJSONObject(inc).getString("description")
+                    val category: String = jsonarr.getJSONObject(inc).getString("category")
+                    val image: String = jsonarr.getJSONObject(inc).getString("image")
+                    val choices: JSONArray = jsonarr.getJSONObject(inc).getJSONArray("choices")
+
+                    (0 until choices.length()).forEach{ _ ->
+                        val isCorrect: Boolean = choices.getJSONObject(choicesInc).getBoolean("isCorrect")
+                        val choiceText: String = choices.getJSONObject(choicesInc).getString("text")
+                        choicesList.add(ParseChoices(isCorrect, choicesInc, choiceText))
+                        choicesInc++
+                    }
+
+                    val que = ParseQuestions(questionId,
+                        description,
+                        category,
+                        image,
+                        choicesList[0],
+                        choicesList[1],
+                        choicesList[2],
+                        choicesList[3]
                     )
-                questionsList.add(que)
-                //Log.i("ParseQuestions: ",""+questionsList)
-                inc++
-                quesId++
+                    if (category == currentCategory){
+                        questionsList.add(que)
+                        totalQuestions++
+                    }
+
+
+                    inc++
+
+                }
+            }catch (i: IOException){
+                Log.i("esxep",""+i)
             }
-
-        }catch (i: IOException){
-            Log.i("Error: ", ""+i)
         }
-    }
+        runBlocking {
+            delay(1000L) }
 
-    private fun getQuestions(): ArrayList<ParseQuestions>{
-        return ArrayList()
     }
 }
