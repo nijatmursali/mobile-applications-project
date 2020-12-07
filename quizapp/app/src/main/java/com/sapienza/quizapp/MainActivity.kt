@@ -2,7 +2,6 @@ package com.sapienza.quizapp
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -42,14 +40,14 @@ class MainActivity : AppCompatActivity() {
 
         val cardLinearLayout = LinearLayout(this)
         cardLinearLayout.orientation = LinearLayout.VERTICAL
-        cardLinearLayout.layoutParams = params
+//        cardLinearLayout.layoutParams = params
 
 
 
         val cardView = CardView(this)
         cardView.radius = 15f
         cardView.setCardBackgroundColor(Color.parseColor("#009688"))
-        cardView.setContentPadding(36,36,36,36)
+        cardView.setContentPadding(50,50,50,50)
         cardView.setBackgroundResource(R.drawable.card_background)
         cardView.layoutParams = params
         cardView.cardElevation = 30f
@@ -58,18 +56,19 @@ class MainActivity : AppCompatActivity() {
         quote.text = ""+categoryList[categoryCounter];
         quote.textSize = 24f
         quote.setTextColor(Color.WHITE)
-        quote.setTypeface(Typeface.SANS_SERIF,Typeface.NORMAL)
+//        quote.setTypeface(Typeface.SANS_SERIF,Typeface.NORMAL)
         Log.i("Category: ", ""+categoryList[categoryCounter])
 
-            val name = TextView(this)
+        val name = TextView(this)
         name.text = "We have listed several "+categoryList[categoryCounter]
-        name.textSize = 16f
-        name.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC)
+        name.textSize = 15f
+//        name.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC)
         name.setTextColor(Color.parseColor("#E0F2F1"))
 
         val btn = Button(this)
         btn.text = ""+categoryList[categoryCounter]
         btn.textSize = 15f
+        btn.setBackgroundColor(0xFF426BFF.toInt());
         btn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("CATEGORY_NAME", btn.text as String)
@@ -88,11 +87,11 @@ class MainActivity : AppCompatActivity() {
         mainLinearLayout.addView(cardView)
             categoryCounter++
         }
-        btn_category.setOnClickListener(){
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+//        btn_category.setOnClickListener(){
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
     }
 
     private fun readJSON() {
