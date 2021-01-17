@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val params = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT)
-        params.setMargins(30,30,30,30)
+        //params.setMargins(0,0,0,50)
 
         val linearLayout = LinearLayout(this)
             linearLayout.orientation = LinearLayout.VERTICAL
@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         val myCardView = androidx.cardview.widget.CardView(this)
             myCardView.layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                500)
+                ViewGroup.LayoutParams.WRAP_CONTENT)
             myCardView.setBackgroundResource(R.drawable.card_background)
-            (myCardView.layoutParams as LinearLayout.LayoutParams).setMargins(30,20,30,0)
+            (myCardView.layoutParams as LinearLayout.LayoutParams).setMargins(30,0,30,30)
             myCardView.radius = 50f
 
 
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             myCardLinearLayout1.layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
+            (myCardLinearLayout1.layoutParams as LinearLayout.LayoutParams).setMargins(30,30,20,20)
             myCardLinearLayout1.orientation = LinearLayout.VERTICAL
 //
 
@@ -74,13 +75,11 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
 
-
         val myCardLinearLayout4 = LinearLayout(this)
             myCardLinearLayout4.layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
             myCardLinearLayout4.orientation = LinearLayout.HORIZONTAL
-
 
         val quote = TextView(this)
             quote.text = ""+categoryList[categoryCounter];
