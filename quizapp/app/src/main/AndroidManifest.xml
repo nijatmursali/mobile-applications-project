@@ -11,10 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizapp"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".ResultActivity"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ResultActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".QuizActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     var categoryList = ArrayList<String>()
     var categoryCounter: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         readJSON()
@@ -167,3 +169,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+
+// URL Backup: http://161.35.55.28:5000/api/questions/

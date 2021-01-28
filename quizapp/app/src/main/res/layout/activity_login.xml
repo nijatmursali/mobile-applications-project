@@ -8,17 +8,17 @@
     android:background="@drawable/bg">
 
 
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quiz APP"
-        android:layout_marginBottom="30dp"
-        android:textSize="25dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:gravity="center"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/app_name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Quiz APP"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:textSize="25dp"-->
+<!--        android:textColor="#fff"-->
+<!--        android:textStyle="bold"-->
+<!--        android:gravity="center"-->
+<!--        />-->
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
