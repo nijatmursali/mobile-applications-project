@@ -34,7 +34,7 @@ function createnewApi(api) {
   $.ajax({
     type: "POST",
     contentType: "application/json",
-    url: "http://161.35.55.28:5000/api/questions",
+    url: url,
     data: JSON.stringify(api),
     dataType: "json",
     success: function (response) {
