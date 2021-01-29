@@ -9,7 +9,7 @@ $(document).ready(function () {
 function getApiList() {
   $.ajax({
     type: "GET",
-    url: "http://161.35.55.28:5000/api/questions",
+    url: url,
     dataType: "json",
     success: function (response) {
       console.log(response);
