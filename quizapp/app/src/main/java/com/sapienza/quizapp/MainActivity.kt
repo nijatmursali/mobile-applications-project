@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
                     client.newCall(request).execute().use { response -> json = response.body()?.string()  }
                     Log.i("Response", ""+client)
                 }
-                run("http://161.35.55.28:5000/api/questions/")
+                run("url_goes_here")
 
                 var jsonarr = JSONArray(json)
                 var inc: Int = 0
