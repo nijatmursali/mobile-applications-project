@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 function getApiDetails(id) {
-  var reqUrl = "http://161.35.55.28:5000/api/questions";
+  var reqUrl = reqUrl;
   var reqUrl = `${reqUrl}/${id}`;
   $.ajax({
     type: "GET",
