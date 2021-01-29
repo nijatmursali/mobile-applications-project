@@ -30,7 +30,7 @@ $("#submit-edit-api").click(function (t) {
 });
 
 function editApi(api) {
-  var reqUrl = "http://161.35.55.28:5000/api/questions";
+  var reqUrl = url;
   var reqUrl = `${reqUrl}/${apiParamID}`;
   $.ajax({
     type: "PUT",
@@ -45,7 +45,7 @@ function editApi(api) {
 }
 
 function getApiDetails(id) {
-  var reqUrl = "http://161.35.55.28:5000/api/questions";
+  var reqUrl = url;
   var reqUrl = `${reqUrl}/${id}`;
   $.ajax({
     type: "GET",
